@@ -16,6 +16,8 @@ import com.yuchen.smartbutler.fragment.GirlFragment;
 import com.yuchen.smartbutler.fragment.UserFragment;
 import com.yuchen.smartbutler.fragment.WechatFragment;
 import com.yuchen.smartbutler.ui.SettingActivity;
+import com.yuchen.smartbutler.utils.L;
+import com.yuchen.smartbutler.utils.ShareUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initData();
         initView();
+        ShareUtil.putString(this,"flag","apple");
+
     }
 
     //初始化数据

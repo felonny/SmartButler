@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Three"
+            android:textSize="30sp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:text="进入主页"
+        android:background="@drawable/button_bg"
+        android:layout_marginTop="200dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

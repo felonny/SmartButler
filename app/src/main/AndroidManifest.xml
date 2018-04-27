@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.SplashActivity"
+            android:theme="@style/NoActivityFullscreen"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +23,12 @@
         <!--设置-->
         <activity android:name=".ui.SettingActivity"
             android:label="@string/text_setting"/>
+        <!--主页-->
+        <activity android:name=".MainActivity" />
+        <!--引导页-->
+        <activity android:name=".ui.GuideActivity"
+            android:theme="@style/NoActivityFullscreen"
+            />
     </application>
 
 </manifest>
