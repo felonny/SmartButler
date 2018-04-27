@@ -17,4 +17,10 @@ public class StaticClass {
     //判断程序是否是第一次运行
 
     public static final String SHARE_IS_FIRST = "isFirst";
+
+    //Bugly Key
+    public static final String BUGLY_APPID = "45373cc3bb";
+
+    //Bmob Key
+    public static final String BMOB_APPID = "a1d38781a17123dfab568d4015b4d6eb";
 }

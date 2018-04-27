@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.yuchen.smartbutler.fragment.ButlerFragment;
 import com.yuchen.smartbutler.fragment.GirlFragment;
 import com.yuchen.smartbutler.fragment.UserFragment;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initData();
         initView();
-        ShareUtil.putString(this,"flag","apple");
+
 
     }
 
