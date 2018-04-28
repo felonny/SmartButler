@@ -61,6 +61,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_forget"
             android:layout_gravity="right"
             android:text="忘记密码"
             android:textColor="@color/colorAccent"

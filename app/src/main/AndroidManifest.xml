@@ -52,7 +52,8 @@
         <activity android:name=".ui.RegisteredActivity"
             android:label="注册"
             />
-
+        <!--忘记密码页面-->
+        <activity android:name=".ui.ForgetPasswordActivity"/>
     </application>
 
 </manifest>
