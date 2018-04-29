@@ -8,12 +8,11 @@
     <LinearLayout
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:background="@android:color/white"
+        android:background="@drawable/dialog_white_bg"
         android:gravity="center"
         android:orientation="vertical"
         >
         <ProgressBar
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView

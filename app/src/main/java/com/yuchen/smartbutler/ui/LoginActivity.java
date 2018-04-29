@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -61,7 +62,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btn_login.setOnClickListener(this);
         tv_forget.setOnClickListener(this);
 
-        dialog = new CustomDialog(this,150,150,R.layout.dialog_loading,R.style.Theme_dialog, Gravity.CENTER,R.style.pop_anim_style) ;
+        //dialog = new CustomDialog(this,120,120,R.layout.dialog_loading,R.style.Theme_dialog, Gravity.CENTER,R.style.pop_anim_style) ;
+        dialog = new CustomDialog(this, WindowManager.LayoutParams.WRAP_CONTENT,WindowManager.LayoutParams.WRAP_CONTENT,
+                R.layout.dialog_loading,R.style.pop_anim_style,Gravity.CENTER) ;
         //屏幕外点击无效
         dialog.setCancelable(false);
 

@@ -23,4 +23,6 @@ public class StaticClass {
 
     //Bmob Key
     public static final String BMOB_APPID = "a1d38781a17123dfab568d4015b4d6eb";
+
+    public static final String PHOTO_IMAGE_FILE_NAME = "fileImg.jpg";
 }

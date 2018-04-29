@@ -39,4 +39,7 @@ dependencies {
 
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
+
+    //circleImageView
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
