@@ -24,8 +24,10 @@ import android.widget.Toast;
 
 import com.yuchen.smartbutler.R;
 import com.yuchen.smartbutler.entity.MyUser;
+import com.yuchen.smartbutler.ui.CourierActivity;
 import com.yuchen.smartbutler.ui.CustomDialog;
 import com.yuchen.smartbutler.ui.LoginActivity;
+import com.yuchen.smartbutler.ui.PhoneActivity;
 import com.yuchen.smartbutler.utils.L;
 import com.yuchen.smartbutler.utils.ShareUtil;
 import com.yuchen.smartbutler.utils.StaticClass;
@@ -52,6 +54,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
     private Button btn_quit_user;
     private TextView edit_user;
+    private TextView tv_courier;
+    //归属地查询
+    private TextView tv_phone;
     private Button btn_update_ok;
 
     private EditText et_username;
@@ -101,6 +106,12 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
         profile_image = (CircleImageView) view.findViewById(R.id.profile_image);
         profile_image.setOnClickListener(this);
+
+        tv_courier = (TextView) view.findViewById(R.id.tv_courier);
+        tv_courier.setOnClickListener(this);
+
+        tv_phone = (TextView) view.findViewById(R.id.tv_phone);
+        tv_phone.setOnClickListener(this);
 
         UtilTools.getImageToShare(profile_image,getActivity());
 
@@ -198,6 +209,12 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_picture:
                 toPicture();
+                break;
+            case R.id.tv_courier:
+                startActivity(new Intent(getActivity(),CourierActivity.class));
+                break;
+            case R.id.tv_phone:
+                startActivity(new Intent(getActivity(),PhoneActivity.class));
                 break;
         }
     }

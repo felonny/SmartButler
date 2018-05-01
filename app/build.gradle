@@ -38,8 +38,15 @@ dependencies {
     compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
 
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-    compile 'cn.bmob.android:bmob-sdk:3.5.5'
+    compile ('cn.bmob.android:bmob-sdk:3.5.5'){
+        exclude group:'io.reactivex'
+    }
 
     //circleImageView
     compile 'de.hdodenhof:circleimageview:2.1.0'
+
+    //RxVolley
+    compile ('com.kymjs.rxvolley:rxvolley:1.1.4'){
+        exclude group:'io.reactivex'
+    }
 }
