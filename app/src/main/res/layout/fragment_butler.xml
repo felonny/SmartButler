@@ -3,12 +3,41 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:gravity="center"
+    android:padding="10dp"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+
+    <ListView
+        android:id="@+id/mChatListView"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:divider="@null"
+        android:layout_height="0dp"></ListView>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_1"
-        android:textSize="30sp"/>
+        android:orientation="horizontal"
+        android:padding="3dp"
+        >
+
+        <EditText
+            android:id="@+id/et_text"
+            android:hint="输入"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:background="@drawable/button_bg"
+            android:id="@+id/btn_send"
+            android:text="发送"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 
 </LinearLayout>

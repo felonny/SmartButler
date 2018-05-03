@@ -22,7 +22,7 @@
             android:layout_height="wrap_content" />
         <View
             android:layout_width="2dp"
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:background="@color/colorPrimary">
 
         </View>

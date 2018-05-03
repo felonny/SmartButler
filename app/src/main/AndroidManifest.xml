@@ -60,6 +60,9 @@
 
         <!--归属地查询页面-->
         <activity android:name=".ui.PhoneActivity"/>
+
+        <!--webview页面-->
+        <activity android:name=".ui.WebViewActivity"/>
     </application>
 
 </manifest>

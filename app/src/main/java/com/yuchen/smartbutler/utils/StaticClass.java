@@ -29,4 +29,10 @@ public class StaticClass {
     public static final String COURIER_KEY = "a7affd78282948619dc7ca2a3189e154";
 
     public static final String PHONE_KEY = "285c8a7425a1de55fde067c4a7148eb5";
+
+    public static final String WECHAT_KEY = "c34d94ecc42a7b59913f0ff2ea808b53";
+
+    public static final String TULING_KEY = "bbad4ccac6c54981b7669eabedc6bfa0";
+
+    public static final String Girl_URL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/1 ";
 }
