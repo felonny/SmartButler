@@ -58,6 +58,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     //归属地查询
     private TextView tv_phone;
     private Button btn_update_ok;
+    private Button btn_update_quit;
 
     private EditText et_username;
     private EditText et_usersex;
@@ -103,6 +104,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
         btn_update_ok = (Button) view.findViewById(R.id.btn_update_ok);
         btn_update_ok.setOnClickListener(this);
+
+        btn_update_quit = (Button) view.findViewById(R.id.btn_update_quit);
+        btn_update_quit.setOnClickListener(this);
 
         profile_image = (CircleImageView) view.findViewById(R.id.profile_image);
         profile_image.setOnClickListener(this);
@@ -155,6 +159,12 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             case R.id.edit_user:
                 setEnable(true);
                 btn_update_ok.setVisibility(View.VISIBLE);
+                btn_update_quit.setVisibility(View.VISIBLE);
+                break;
+            case R.id.btn_update_quit:
+                btn_update_ok.setVisibility(View.GONE);
+                btn_update_quit.setVisibility(View.GONE);
+                setEnable(false);
                 break;
             case R.id.btn_update_ok:
                 //1.拿到输入框的值
@@ -187,6 +197,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                             if(e == null){
                                 setEnable(false);
                                 btn_update_ok.setVisibility(View.GONE);
+                                btn_update_quit.setVisibility(View.GONE);
                                 Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_SHORT).show();
                             }else{
                                 Toast.makeText(getActivity(), "修改失败", Toast.LENGTH_SHORT).show();

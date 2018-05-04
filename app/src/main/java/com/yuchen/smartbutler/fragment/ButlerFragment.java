@@ -15,11 +15,16 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechSynthesizer;
+import com.iflytek.cloud.SynthesizerListener;
 import com.yuchen.smartbutler.R;
 import com.yuchen.smartbutler.adapter.CharListAdapter;
 import com.yuchen.smartbutler.entity.CharListData;
 import com.yuchen.smartbutler.utils.L;
 import com.yuchen.smartbutler.utils.RobotUtil;
+import com.yuchen.smartbutler.utils.ShareUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +45,8 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
     private Button btn_send;
 
     private EditText et_send;
+
+    private SpeechSynthesizer mTts;
 
     private Handler mHandler = new Handler(){
         @Override
@@ -70,6 +77,24 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
 
 
     private void findView(View view) {
+
+        mTts = SpeechSynthesizer.createSynthesizer(getActivity(),null);
+        mTts.setParameter(SpeechConstant.SPEED,"50");
+        mTts.setParameter(SpeechConstant.VOLUME,"80");
+        mTts.setParameter(SpeechConstant.VOICE_NAME,"xiaoyan");
+        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
+        //mTts.setParameter( SpeechConstant.ENGINE_MODE, engineMode );
+
+//        if( SpeechConstant.TYPE_LOCAL.equals(engineType)
+//                &&SpeechConstant.MODE_MSC.equals(engineMode) ){
+//            // 需下载使用对应的离线合成SDK
+//            mTts.setParameter( ResourceUtil.TTS_RES_PATH, ttsResPath );
+//        }
+//
+//
+//        final String strTextToSpeech = "科大讯飞，让世界聆听我们的声音";
+//        mTts.startSpeaking( strTextToSpeech, mSynListener );
+
         chatListView = (ListView) view.findViewById(R.id.mChatListView);
         btn_send = (Button) view.findViewById(R.id.btn_send);
         btn_send.setOnClickListener(this);
@@ -124,6 +149,10 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
 
     //添加左边文本
     public void addLeftItem(String text){
+        boolean isSpeak = ShareUtil.getBoolean(getActivity(),"isSpeak",false);
+        if(isSpeak){
+            startSpeak(text);
+        }
         CharListData data = new CharListData();
         data.setType(CharListAdapter.VALUE_LEFT_TEXT);
         data.setText(text);
@@ -136,7 +165,6 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
 
     //添加右边文本
     public void addRightItem(String text){
-
         CharListData data = new CharListData();
         data.setType(CharListAdapter.VALUE_RIGHT_TEXT);
         data.setText(text);
@@ -147,5 +175,52 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
         chatListView.setSelection(chatListView.getBottom());
     }
 
+    //开始说话
+    private void startSpeak(String text){
+        mTts.startSpeaking(text,mSynListener);
+    }
 
+
+    private SynthesizerListener mSynListener = new SynthesizerListener() {
+        //开始播放
+        @Override
+        public void onSpeakBegin() {
+
+        }
+
+        //缓冲进度回调
+        @Override
+        public void onBufferProgress(int i, int i1, int i2, String s) {
+
+        }
+
+        //暂停播放
+        @Override
+        public void onSpeakPaused() {
+
+        }
+
+        //恢复播放回调接口
+        @Override
+        public void onSpeakResumed() {
+
+        }
+
+        @Override
+        public void onSpeakProgress(int i, int i1, int i2) {
+
+        }
+
+        //会话结束时回调
+        @Override
+        public void onCompleted(SpeechError speechError) {
+
+        }
+
+        //会话事件回调
+        @Override
+        public void onEvent(int i, int i1, int i2, Bundle bundle) {
+
+        }
+    };
 }

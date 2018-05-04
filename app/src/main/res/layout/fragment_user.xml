@@ -109,15 +109,34 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_update_ok"
-                android:visibility="gone"
-                android:textColor="@android:color/white"
-                android:text="确认修改"
-                android:background="@drawable/button_bg"
-                android:layout_margin="10dp"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_update_ok"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:text="确认修改"
+                    android:background="@drawable/button_bg"
+                    android:layout_margin="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btn_update_quit"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:text="放弃修改"
+                    android:background="@drawable/button_bg"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/tv_courier"

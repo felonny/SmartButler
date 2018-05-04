@@ -35,4 +35,8 @@ public class StaticClass {
     public static final String TULING_KEY = "bbad4ccac6c54981b7669eabedc6bfa0";
 
     public static final String VIDEO_URL = "http://baobab.kaiyanapp.com/api/v2/feed?num=2&udid=26868b32e808498db32fd51fb422d00175e179df&vc=83";
+
+    public static final String VOICE_KEY = "5aebe4b1";
+
+    public static final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
 }

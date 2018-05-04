@@ -112,8 +112,11 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.iv_back:
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
             case R.id.btn_start:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
 

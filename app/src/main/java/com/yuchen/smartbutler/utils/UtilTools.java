@@ -49,12 +49,15 @@ public class UtilTools {
     public static void getImageToShare(ImageView imageView,Context mContext){
         //1.拿到string
         String imageString = ShareUtil.getString(mContext,"image_title","");
-        //2.利用Base64将String转化成我们的字节数组输出流
-        byte [] byteArray = Base64.decode(imageString,Base64.DEFAULT);
-        ByteArrayInputStream byStream = new ByteArrayInputStream(byteArray);
-        //生成bitmap
-        Bitmap bitmap = BitmapFactory.decodeStream(byStream);
-        //设置到profile_image中
-        imageView.setImageBitmap(bitmap);
+        if(!imageString.equals("")){
+            //2.利用Base64将String转化成我们的字节数组输出流
+            byte [] byteArray = Base64.decode(imageString,Base64.DEFAULT);
+            ByteArrayInputStream byStream = new ByteArrayInputStream(byteArray);
+            //生成bitmap
+            Bitmap bitmap = BitmapFactory.decodeStream(byStream);
+            //设置到profile_image中
+            imageView.setImageBitmap(bitmap);
+        }
+
     }
 }

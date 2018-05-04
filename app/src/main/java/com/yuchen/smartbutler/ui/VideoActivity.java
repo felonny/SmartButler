@@ -1,5 +1,6 @@
 package com.yuchen.smartbutler.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import io.vov.vitamio.widget.VideoView;
  * 描述: TODO
  */
 
-public class VideoActivity extends BaseActivity {
+public class VideoActivity extends Activity {
 
     private VideoView videoView;
     private String url ;
