@@ -1,7 +1,6 @@
 package com.yuchen.smartbutler.adapter;
 
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,35 +9,36 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.yuchen.smartbutler.R;
-import com.yuchen.smartbutler.entity.WeChatData;
-import com.yuchen.smartbutler.utils.L;
+import com.yuchen.smartbutler.entity.VideoData;
 import com.yuchen.smartbutler.utils.PicassonUtil;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * 项目名: SmartButlers
  * 包名:  com.yuchen.smartbutler.adapter
- * 文件名: WeChatAdapter
- * Created by tangyuchen on 18/5/2.
- * 描述: 微信精选
+ * 文件名: VideoAdapter
+ * Created by tangyuchen on 18/5/3.
+ * 描述: TODO
  */
 
-public class WeChatAdapter extends BaseAdapter {
+public class VideoAdapter extends BaseAdapter{
 
     private Context mContext;
     private LayoutInflater inflater;
-    private List<WeChatData> mList;
-    private WeChatData data;
-
     private boolean flag = false;
 
     private int width,height;
     private WindowManager wm;
 
-    public WeChatAdapter(Context mContext,List<WeChatData> mList){
+    VideoData data = new VideoData();
+
+    private List<VideoData> mList = new ArrayList<>();
+
+    public VideoAdapter(Context mContext,List<VideoData> mList){
         this.mContext = mContext;
         this.mList = mList;
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,43 +61,46 @@ public class WeChatAdapter extends BaseAdapter {
         return i;
     }
 
+    public void updateView(List<VideoData> nowList)
+    {
+        this.mList = nowList;
+        this.notifyDataSetChanged();//强制动态刷新数据进而调用getView方法
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
-
         if(view == null){
             viewHolder = new ViewHolder();
-            view = inflater.inflate(R.layout.wechat_item,null);
-            viewHolder.iv_img = (ImageView) view.findViewById(R.id.iv_img);
-            viewHolder.tv_title = (TextView) view.findViewById(R.id.tv_title);
-            viewHolder.tv_source = (TextView) view.findViewById(R.id.tv_source);
+            view = inflater.inflate(R.layout.video_item,null);
+            viewHolder.iv_videoImg = (ImageView) view.findViewById(R.id.iv_videoImg);
+            viewHolder.tv_videoTitle = (TextView) view.findViewById(R.id.tv_videoTitle);
+            viewHolder.tv_videoDesc = (TextView) view.findViewById(R.id.tv_videoDesc);
             view.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) view.getTag();
         }
-
         data = mList.get(i);
-        viewHolder.tv_title.setText(data.getTitle());
-        viewHolder.tv_source.setText(data.getSource());
-
+        viewHolder.tv_videoTitle.setText(data.getTitle());
+        viewHolder.tv_videoDesc.setText(data.getDesc());
 
         if(data.getImgUrl().equals("")){
-            viewHolder.iv_img.setVisibility(view.GONE);
+            viewHolder.iv_videoImg.setVisibility(view.GONE);
             flag = true;
         }else{
             if(flag){
-                viewHolder.iv_img.setVisibility(view.VISIBLE);
+                viewHolder.iv_videoImg.setVisibility(view.VISIBLE);
                 flag = false;
             }
-            PicassonUtil.loadImageViewSize(mContext,data.getImgUrl(),width/3,150,viewHolder.iv_img);
+            PicassonUtil.loadImageViewSize(mContext,data.getImgUrl(),width/3,150,viewHolder.iv_videoImg);
 
         }
         return view;
     }
 
     class ViewHolder{
-        private ImageView iv_img;
-        private TextView tv_title;
-        private TextView tv_source;
+        private ImageView iv_videoImg;
+        private TextView tv_videoTitle;
+        private TextView tv_videoDesc;
     }
 }

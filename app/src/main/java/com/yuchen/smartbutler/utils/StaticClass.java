@@ -34,5 +34,5 @@ public class StaticClass {
 
     public static final String TULING_KEY = "bbad4ccac6c54981b7669eabedc6bfa0";
 
-    public static final String Girl_URL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/1 ";
+    public static final String VIDEO_URL = "http://baobab.kaiyanapp.com/api/v2/feed?num=2&udid=26868b32e808498db32fd51fb422d00175e179df&vc=83";
 }

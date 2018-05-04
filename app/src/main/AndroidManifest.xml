@@ -17,6 +17,10 @@
     <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".application.BaseApplication"
         android:allowBackup="true"
@@ -63,6 +67,16 @@
 
         <!--webview页面-->
         <activity android:name=".ui.WebViewActivity"/>
+
+        <!--video页面-->
+        <activity android:name=".ui.VideoActivity"
+            android:configChanges=
+                "orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:process=":vitamio"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
     </application>
 
 </manifest>
