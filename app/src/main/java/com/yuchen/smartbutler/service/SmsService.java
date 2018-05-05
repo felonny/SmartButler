@@ -1,5 +1,7 @@
 package com.yuchen.smartbutler.service;
 
+import android.app.ActivityManager;
+import android.app.Notification;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,6 +13,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +22,9 @@ import android.widget.TextView;
 import com.yuchen.smartbutler.R;
 import com.yuchen.smartbutler.utils.L;
 import com.yuchen.smartbutler.utils.StaticClass;
+import com.yuchen.smartbutler.view.DispatchLinearLayout;
+
+import java.util.List;
 
 /**
  * 项目名: SmartButlers
@@ -37,11 +43,15 @@ public class SmsService extends Service implements View.OnClickListener {
 
     private WindowManager wm;
 
-    private View view;
+    private DispatchLinearLayout mView;
 
     private TextView tv_phone;
     private TextView tv_content;
     private Button btn_sendsms;
+
+    private HomeWatchReceiver homeWatchReceiver;
+
+    private DispatchLinearLayout.DispatcheKeyEventListener mDispatchKeyEventListener = null;
 
     private WindowManager.LayoutParams layoutparams;
     @Nullable
@@ -67,6 +77,10 @@ public class SmsService extends Service implements View.OnClickListener {
         intent.setPriority(Integer.MAX_VALUE);
         //注册
         registerReceiver(smsReceiver,intent);
+
+        homeWatchReceiver = new HomeWatchReceiver();
+        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        registerReceiver(homeWatchReceiver,intentFilter);
     }
 
     @Override
@@ -75,6 +89,7 @@ public class SmsService extends Service implements View.OnClickListener {
         L.i("stop Service");
         //注销
         unregisterReceiver(smsReceiver);
+        unregisterReceiver(homeWatchReceiver);
     }
 
 
@@ -116,20 +131,38 @@ public class SmsService extends Service implements View.OnClickListener {
         //定义类型
         layoutparams.type = WindowManager.LayoutParams.TYPE_PHONE;
         //加载布局
-        view = View.inflate(getApplicationContext(), R.layout.window_item,null);
+        mView = (DispatchLinearLayout) View.inflate(getApplicationContext(), R.layout.window_item, null);
 
-        tv_phone = (TextView) view.findViewById(R.id.tv_phone);
-        tv_content = (TextView) view.findViewById(R.id.tv_content);
+        tv_phone = (TextView) mView.findViewById(R.id.tv_phone);
+        tv_content = (TextView) mView.findViewById(R.id.tv_content);
 
-        btn_sendsms = (Button) view.findViewById(R.id.btn_sendsms);
+        btn_sendsms = (Button) mView.findViewById(R.id.btn_sendsms);
 
-        tv_phone.setText("发件人："+smsPhone);
+        tv_phone.setText("发件人：" + smsPhone);
         tv_content.setText(smsContent);
 
         btn_sendsms.setOnClickListener(this);
 
         //添加view到窗口
-        wm.addView(view,layoutparams);
+        wm.addView(mView, layoutparams);
+
+        mView.setDispatcheKeyEventListener(mDispatchKeyEventListener);
+
+        mDispatchKeyEventListener = new DispatchLinearLayout.DispatcheKeyEventListener() {
+            @Override
+            public boolean dispatcheKeyEvent(KeyEvent event) {
+
+                //判断是否按返回键
+                if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
+                    L.i("我按了返回键");
+                    if(mView.getParent() != null){
+                        wm.removeView(mView);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        };
     }
 
     @Override
@@ -138,8 +171,8 @@ public class SmsService extends Service implements View.OnClickListener {
             case R.id.btn_sendsms:
                 sendSms();
                 //完成跳转以后消失窗口
-                if(view.getParent()!=null){
-                    wm.removeView(view);
+                if(mView.getParent()!=null){
+                        wm.removeView(mView);
                 }
                 break;
         }
@@ -156,5 +189,47 @@ public class SmsService extends Service implements View.OnClickListener {
         startActivity(intent);
 
 
+    }
+
+    public static boolean isServiceRunning(Context mContext, String className) {
+
+        boolean isRunning = false;
+        ActivityManager activityManager = (ActivityManager) mContext
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> serviceList = activityManager
+                .getRunningServices(30);
+
+        if (!(serviceList.size() > 0)) {
+            return false;
+        }
+        L.e("OnlineService："+className);
+        for (int i = 0; i < serviceList.size(); i++) {
+            L.e(serviceList.get(i).service.getClassName());
+            if (serviceList.get(i).service.getClassName().contains(className) == true) {
+                isRunning = true;
+                break;
+            }
+        }
+        return isRunning;
+    }
+
+    private static final String SYSTEM_DIALOGS_RESON_KEY = "reason";
+    private static final String SYSTEM_DIALOGS_HOME_KEY = "homekey";
+
+    class HomeWatchReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)){
+                String reason = intent.getStringExtra(SYSTEM_DIALOGS_RESON_KEY);
+                if(SYSTEM_DIALOGS_HOME_KEY.equals(reason)){
+                    L.i("我点击了home键");
+                    if(mView.getParent()!=null){
+                        wm.removeView(mView);
+                    }
+                }
+            }
+        }
     }
 }
