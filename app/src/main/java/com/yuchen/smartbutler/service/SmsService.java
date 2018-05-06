@@ -53,6 +53,10 @@ public class SmsService extends Service implements View.OnClickListener {
 
     private DispatchLinearLayout.DispatcheKeyEventListener mDispatchKeyEventListener = null;
 
+
+    private static final String SYSTEM_DIALOGS_RESON_KEY = "reason";
+    private static final String SYSTEM_DIALOGS_HOME_KEY = "homekey";
+
     private WindowManager.LayoutParams layoutparams;
     @Nullable
     @Override
@@ -213,8 +217,7 @@ public class SmsService extends Service implements View.OnClickListener {
         return isRunning;
     }
 
-    private static final String SYSTEM_DIALOGS_RESON_KEY = "reason";
-    private static final String SYSTEM_DIALOGS_HOME_KEY = "homekey";
+
 
     class HomeWatchReceiver extends BroadcastReceiver{
 

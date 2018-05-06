@@ -83,18 +83,6 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
         mTts.setParameter(SpeechConstant.VOLUME,"80");
         mTts.setParameter(SpeechConstant.VOICE_NAME,"xiaoyan");
         mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
-        //mTts.setParameter( SpeechConstant.ENGINE_MODE, engineMode );
-
-//        if( SpeechConstant.TYPE_LOCAL.equals(engineType)
-//                &&SpeechConstant.MODE_MSC.equals(engineMode) ){
-//            // 需下载使用对应的离线合成SDK
-//            mTts.setParameter( ResourceUtil.TTS_RES_PATH, ttsResPath );
-//        }
-//
-//
-//        final String strTextToSpeech = "科大讯飞，让世界聆听我们的声音";
-//        mTts.startSpeaking( strTextToSpeech, mSynListener );
-
         chatListView = (ListView) view.findViewById(R.id.mChatListView);
         btn_send = (Button) view.findViewById(R.id.btn_send);
         btn_send.setOnClickListener(this);

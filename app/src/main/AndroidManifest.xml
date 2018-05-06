@@ -98,7 +98,7 @@
         <!--短信服务-->
         <service android:name=".service.SmsService"/>
 
-        <activity android:name=".ui.testActivity"/>
+        <activity android:name=".ui.UpdateActivity"/>
     </application>
 
 </manifest>

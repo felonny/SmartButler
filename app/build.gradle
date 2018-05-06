@@ -47,18 +47,31 @@ dependencies {
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     compile('cn.bmob.android:bmob-sdk:3.5.5') {
-        exclude group: 'io.reactivex'
+        exclude group: 'io.reactivex:rxjava'
+        exclude group: 'io.reactivex:rxandroid'
+        exclude group:'com.squareup.okio'
+        exclude group:'com.squareup.okhttp3',module:'okhttp'
     }
     //circleImageView
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //RxVolley
-    compile('com.kymjs.rxvolley:rxvolley:1.1.4') {
+    compile('com.kymjs.rxvolley:rxvolley:1.1.0') {
         exclude group: 'io.reactivex'
+        exclude group:'com.squareup.okio'
+        exclude group:'com.squareup.okhttp3',module:'okhttp'
+    }
+    //RxVolley下载模块
+    compile ('com.kymjs.rxvolley:okhttp:1.1.0'){
+        exclude group:'com.squareup.okhttp3'
+        exclude group:'com.squareup.okio'
     }
     //picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile project(':vitamio')
     compile files('libs/Msc.jar')
     compile files('libs/Sunflower.jar')
+
+    //NumberProgress
+    compile 'com.daimajia.numberprogressbar:library:1.4@aar'
 
 }

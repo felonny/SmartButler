@@ -39,4 +39,6 @@ public class StaticClass {
     public static final String VOICE_KEY = "5aebe4b1";
 
     public static final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+
+    public static final String CONFIG_URL = "http://192.168.1.11:8080/config.json";
 }
