@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yuchen.smartbutler.view.DispatchLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:background="@drawable/dialog_white_bg"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <TextView
+            android:id="@id/tv_phone"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:text="188103519832"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:text="今晚吃什么"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
+        <LinearLayout
+            android:gravity="right"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_sendsms"
+                android:background="@drawable/button_bg"
+                android:textColor="@android:color/white"
+                android:text="回复"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.yuchen.smartbutler.view.DispatchLinearLayout>
