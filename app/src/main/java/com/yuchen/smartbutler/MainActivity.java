@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //悬浮窗
     private FloatingActionButton mFloatingActionButton;
 
-    private PermissionsChecker permissionsChecker;
+    //private PermissionsChecker permissionsChecker;
 
     private static final int REQUEST_CODE = 0;
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        permissionsChecker = new PermissionsChecker(this);
+        //permissionsChecker = new PermissionsChecker(this);
 
         //去掉阴影
         getSupportActionBar().setElevation(0);
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-        if(permissionsChecker.lacksPermissions(PERMISSIONS)){
-            startPermissionsActivity();
-        }
+//        if(permissionsChecker.lacksPermissions(PERMISSIONS)){
+//            startPermissionsActivity();
+//        }
     }
 
     private void startPermissionsActivity() {
