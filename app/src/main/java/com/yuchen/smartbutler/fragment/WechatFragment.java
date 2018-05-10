@@ -1,7 +1,9 @@
 package com.yuchen.smartbutler.fragment;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,8 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.kymjs.okhttp.OkHttpStack;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
+import com.kymjs.rxvolley.http.RequestQueue;
+import com.squareup.okhttp.OkHttpClient;
 import com.yuchen.smartbutler.R;
 import com.yuchen.smartbutler.adapter.WeChatAdapter;
 import com.yuchen.smartbutler.entity.WeChatData;
@@ -44,6 +49,7 @@ public class WechatFragment extends Fragment implements AdapterView.OnItemClickL
     private List<String> mListTitle = new ArrayList<>();
     //地址
     private List<String> mListUrl = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,9 +57,32 @@ public class WechatFragment extends Fragment implements AdapterView.OnItemClickL
         findView(view);
         return view;
     }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        switch(permsRequestCode){
+//
+//            case 200:
+//                boolean networkAccepted = grantResults[0]== PackageManager.PERMISSION_GRANTED;
+//                if(networkAccepted){
+//                    //授权成功之后，调用系统相机进行拍照操作等
+//
+//
+//                }else{
+//                    //用户授权拒绝之后，友情提示一下就可以了
+//                    Toast.makeText(getActivity(),"没有获取到您的权限",Toast.LENGTH_SHORT).show();
+//                }
+//
+//                break;
+//
+//        }
+//    }
 
     private void findView(View view) {
         weChatListView = (ListView) view.findViewById(R.id.weChat_mListView);
+        RxVolley.setRequestQueue(RequestQueue.newRequestQueue(RxVolley.CACHE_FOLDER,
+                new OkHttpStack(new OkHttpClient())));
 
         //解析接口
         String url = "http://v.juhe.cn/weixin/query?pno=&ps=&dtype=&key="+ StaticClass.WECHAT_KEY;

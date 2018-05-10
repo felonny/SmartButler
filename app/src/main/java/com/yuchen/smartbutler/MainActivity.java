@@ -1,5 +1,6 @@
 package com.yuchen.smartbutler;
 
+import android.Manifest;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -16,14 +17,37 @@ import com.yuchen.smartbutler.fragment.ButlerFragment;
 import com.yuchen.smartbutler.fragment.GirlFragment;
 import com.yuchen.smartbutler.fragment.UserFragment;
 import com.yuchen.smartbutler.fragment.WechatFragment;
+import com.yuchen.smartbutler.ui.PermissionsActivity;
 import com.yuchen.smartbutler.ui.SettingActivity;
 import com.yuchen.smartbutler.utils.L;
+import com.yuchen.smartbutler.utils.PermissionsChecker;
 import com.yuchen.smartbutler.utils.ShareUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    static final String[] PERMISSIONS = new String[]{
+            Manifest.permission.READ_LOGS,
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.WAKE_LOCK,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.WRITE_SETTINGS,
+            Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.INTERNET,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.CHANGE_NETWORK_STATE,
+            Manifest.permission.READ_CONTACTS,
+            Manifest.permission.SYSTEM_ALERT_WINDOW,
+            Manifest.permission.CAMERA,
+
+    };
 
     //TabLayout
     private TabLayout mTabLayout;
@@ -36,11 +60,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //悬浮窗
     private FloatingActionButton mFloatingActionButton;
 
+    private PermissionsChecker permissionsChecker;
+
+    private static final int REQUEST_CODE = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        permissionsChecker = new PermissionsChecker(this);
 
         //去掉阴影
         getSupportActionBar().setElevation(0);
@@ -49,6 +78,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(permissionsChecker.lacksPermissions(PERMISSIONS)){
+            startPermissionsActivity();
+        }
+    }
+
+    private void startPermissionsActivity() {
+        PermissionsActivity.startActivityForResult(this, REQUEST_CODE, PERMISSIONS);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
+            finish();
+        }
     }
 
     //初始化数据
