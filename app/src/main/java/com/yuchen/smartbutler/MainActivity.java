@@ -33,18 +33,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.ACCESS_WIFI_STATE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.WAKE_LOCK,
-            Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.WRITE_SETTINGS,
-            Manifest.permission.RECEIVE_SMS,
+//            Manifest.permission.WAKE_LOCK,
+//            Manifest.permission.READ_PHONE_STATE,
+//            Manifest.permission.READ_EXTERNAL_STORAGE,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.WRITE_SETTINGS,
+//            Manifest.permission.RECEIVE_SMS,
             Manifest.permission.SEND_SMS,
             Manifest.permission.INTERNET,
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CHANGE_NETWORK_STATE,
-            Manifest.permission.READ_CONTACTS,
-            Manifest.permission.SYSTEM_ALERT_WINDOW,
+//            Manifest.permission.RECORD_AUDIO,
+//            Manifest.permission.CHANGE_NETWORK_STATE,
+//            Manifest.permission.READ_CONTACTS,
+//            Manifest.permission.SYSTEM_ALERT_WINDOW,
             Manifest.permission.CAMERA,
 
     };
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //悬浮窗
     private FloatingActionButton mFloatingActionButton;
 
-    //private PermissionsChecker permissionsChecker;
+    private PermissionsChecker permissionsChecker;
 
     private static final int REQUEST_CODE = 0;
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //permissionsChecker = new PermissionsChecker(this);
+        permissionsChecker = new PermissionsChecker(this);
 
         //去掉阴影
         getSupportActionBar().setElevation(0);
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-//        if(permissionsChecker.lacksPermissions(PERMISSIONS)){
-//            startPermissionsActivity();
-//        }
+        if(permissionsChecker.lacksPermissions(PERMISSIONS)){
+            startPermissionsActivity();
+        }
     }
 
     private void startPermissionsActivity() {

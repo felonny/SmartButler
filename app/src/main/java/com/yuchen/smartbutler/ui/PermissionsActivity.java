@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.yuchen.smartbutler.R;
 import com.yuchen.smartbutler.utils.PermissionsChecker;
@@ -61,6 +62,7 @@ public class PermissionsActivity extends AppCompatActivity {
                 requestPermissions(permissions); // 请求权限
             } else {
                 allPermissionsGranted(); // 全部权限都已获取
+                Toast.makeText(this,"你已经获得网络权限1",Toast.LENGTH_SHORT).show();
             }
         } else {
             isRequireCheck = true;
@@ -97,6 +99,7 @@ public class PermissionsActivity extends AppCompatActivity {
         if (requestCode == PERMISSION_REQUEST_CODE && hasAllPermissionsGranted(grantResults)) {
             isRequireCheck = true;
             allPermissionsGranted();
+            Toast.makeText(this,"你已经获得网络权限2",Toast.LENGTH_SHORT).show();
         } else {
             isRequireCheck = false;
             showMissingPermissionDialog();
