@@ -99,6 +99,8 @@
         <service android:name=".service.SmsService"/>
 
         <activity android:name=".ui.UpdateActivity"/>
+
+        <activity android:name=".ui.PermissionsActivity"/>
     </application>
 
 </manifest>
