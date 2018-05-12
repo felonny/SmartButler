@@ -57,27 +57,6 @@ public class WechatFragment extends Fragment implements AdapterView.OnItemClickL
         findView(view);
         return view;
     }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        switch(permsRequestCode){
-//
-//            case 200:
-//                boolean networkAccepted = grantResults[0]== PackageManager.PERMISSION_GRANTED;
-//                if(networkAccepted){
-//                    //授权成功之后，调用系统相机进行拍照操作等
-//
-//
-//                }else{
-//                    //用户授权拒绝之后，友情提示一下就可以了
-//                    Toast.makeText(getActivity(),"没有获取到您的权限",Toast.LENGTH_SHORT).show();
-//                }
-//
-//                break;
-//
-//        }
-//    }
 
     private void findView(View view) {
         weChatListView = (ListView) view.findViewById(R.id.weChat_mListView);
@@ -89,7 +68,7 @@ public class WechatFragment extends Fragment implements AdapterView.OnItemClickL
         RxVolley.get(url, new HttpCallback() {
             @Override
             public void onSuccess(String t) {
-                //Toast.makeText(getActivity(),t,Toast.LENGTH_SHORT).show();
+
                 L.i(t);
                 parsingJson(t);
             }
