@@ -3,9 +3,9 @@
 界面采用的是主流生活工具App，Tab切换界面。视频采用的是“开眼”App视频源。<br>
 ## 主要功能<br>
 ### *动态权限检测，为了兼容Android6.0+ 在登录app后进行授权询问，如果缺少权限可以去设置中重新授权<br>
-![](https://raw.githubusercontent.com/felonny/SmartButler/master/app/src/main/res/drawable/checkquan.png)<br>
-![](https://raw.githubusercontent.com/felonny/SmartButler/master/app/src/main/res/drawable/check.png)<br>
-![](https://raw.githubusercontent.com/felonny/SmartButler/master/app/src/main/res/drawable/settingadd.png)<br>
+![](https://raw.githubusercontent.com/felonny/SmartButler/master/app/src/main/res/drawable/checkquan.png)
+![](https://raw.githubusercontent.com/felonny/SmartButler/master/app/src/main/res/drawable/check.png)
+![](https://raw.githubusercontent.com/felonny/SmartButler/master/app/src/main/res/drawable/settingadd.png)
 ### 1.闪屏界面，引导视图<br>
 在首次打开App时，通过闪屏界面进入引导视图，再进入主页登录界面。<br>
 ### 2.登录界面<br>
